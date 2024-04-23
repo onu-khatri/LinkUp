@@ -3,7 +3,7 @@
     "host": "localhost",
     "port": 5432,
     "username": "postgres",
-    "password": "Pass1234",
+    "password": "xxxx",
     "database": "linkedin",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true,
