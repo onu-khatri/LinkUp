@@ -1,0 +1,95 @@
+.global-nav__logo {
+    color: #0a66c2;
+}
+
+.badge {
+    float: right;
+    margin-left: -45px;
+    padding: 4px;
+    font-size: 13px;
+}
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.form-input {
+    margin: 0 0;
+    width: 100%;
+}
+
+.searchContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    column-gap: 42px;
+    max-width: 733px;
+}
+
+.form-input label {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 45px;
+}
+
+.form-input .placeholder {
+    position: absolute;
+    display: block;
+    top: 23px;
+    z-index: 2;
+    font-size: 16px;
+    transition: all 200ms ease-in-out;
+    width: 100%;
+    cursor: text;
+    padding: 0 10px 0px 5px;
+}
+
+.form-input input,
+.form-input textarea {
+    position: absolute;
+    top: 15px;
+    z-index: 1;
+    width: 100%;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid grey;
+    transition: border-color 200ms ease-in-out;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+.form-input textarea {
+    min-height: 30px;
+    padding: 8px 0;
+}
+
+.form-input input {
+    height: 30px;
+    border-radius: 5%;
+    padding: 0 10px;
+}
+
+.form-input input:focus,
+.form-input input:valid,
+.form-input textarea:focus,
+.form-input textarea:valid {
+    border-bottom: 2px solid orange;
+}
+
+.form-input input:focus+.placeholder,
+.form-input input:valid+.placeholder,
+.form-input textarea:focus+.placeholder,
+.form-input textarea:valid+.placeholder {
+    top: -4px;
+    cursor: inherit;
+    font-size: 13px;
+    color: black;
+    font-weight: 500;
+}

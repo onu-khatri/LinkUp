@@ -1,0 +1,43 @@
+.h7 {
+    font-size: 0.8rem;
+}
+
+.gedf-card {
+    margin-bottom: 2.77rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.link-dark:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.article-reaction-off {
+    text-decoration: none;
+    color: black;
+}
+
+.article-reaction-on {
+    text-decoration: none;
+    color: blue;
+}
+
+.article-numbers {
+    --bs-breadcrumb-divider: '\00b7';
+}
+
+.carousel-control {
+    top: 45%;
+    height: 10%;
+}
+
+.image {
+    display: block;
+    width: auto;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}

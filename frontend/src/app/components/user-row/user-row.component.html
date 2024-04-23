@@ -1,0 +1,253 @@
+<ng-template #popContent>
+  <div>
+    <a class="button" routerLink="/login">Login</a>&nbsp; | &nbsp;<a
+      class="button"
+      routerLink="/register"
+      >Register</a
+    >
+  </div>
+</ng-template>
+<ng-template #popTitle>
+  <div style="font-size: 12px; min-width: 104px">
+    <span style="color: #2f4ba0">Join Linkup</span> to follow or connect
+  </div></ng-template
+>
+<div style="
+margin-bottom: 20px;
+background-color: white;
+padding: 10px 10px;
+border-radius: 10px;
+">
+<div
+  *ngIf="user"
+  class="d-flex flex-row bd-highlight user-row"
+>
+  <div style="display: grid; grid-template-rows: 1fr auto">
+    <div style="display: flex">
+      <div class="px-2 bd-highlight">
+        <img [src]="profilePicPath" alt="user" class="profile-photo-lg" />
+      </div>
+      <div class="px-2 bd-highlight" style="min-width: 150px">
+        <h5>
+          <a
+            style="text-decoration: none; text-transform: capitalize"
+            routerLink="/user/{{ user.id }}"
+            >{{ user.firstname.toLowerCase() }}
+            {{ user.lastname.toLowerCase() }}</a
+          >
+        </h5>
+        <h6 class="text-muted">{{ headline }}</h6>
+        
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr" *ngIf="!isLoggedIn">
+      <div style="display: block; position: relative">
+        <button
+          type="button"
+          class="follow"
+          id="follow-button"
+          placement="top"
+          [ngbPopover]="popContent"
+          [popoverTitle]="popTitle"
+        >
+          + Follow
+        </button>
+      </div>
+      <div style="display: block; position: relative">
+        <button
+          type="button"
+          class="connect"
+          placement="top"
+          [ngbPopover]="popContent"
+          [popoverTitle]="popTitle"
+        >
+          connect
+        </button>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr" *ngIf="isLoggedIn">
+      <div style="display: block; position: relative">
+        <button *ngIf="!isFollowing"
+          type="button"
+          class="follow"
+          id="follow-button"
+          (click)="follow()"
+        >
+          + Follow
+        </button>
+        <button *ngIf="isFollowing" style="background: #f0f4f9;"
+          type="button"
+          class="follow"
+          id="follow-button"
+        > Following
+        </button>
+      </div>
+      <div style="display: block; position: relative">
+        <button *ngIf="!isRequestSent && !isCurrentUserFriend"
+          type="button"
+          class="connect"
+          (click) = "addConnection()"
+        >
+          Connect
+        </button>
+        <button *ngIf="isRequestSent"
+          type="button"
+          class="connect"
+          style="background-color: #eaf7ea;"
+        >
+          Requested 
+        </button>
+
+        <button *ngIf="isCurrentUserFriend"
+        type="button"
+        class="connect"
+        style="border: 2px solid #024502; background-color: #eaf7ea;"
+      >
+        Connected 
+      </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <ul style="list-style: none; display: flex" class="exp-list">
+      <li
+        *ngFor="let exp of user.experiences; index as i"
+        [ngStyle]="{
+          display: 'grid',
+          position: 'relative',
+          'grid-template-rows': '1fr auto 1fr',
+          padding: '5px 25px 15px 5px',
+          'font-weight': '500',
+          'border-radius': '5px'
+        }"
+      >
+        <span style="width: max-content">{{ exp.title }}</span>
+        <span style="width: max-content; height: 22px"></span>
+        <span style="padding: 0 10px 0 10px">
+          {{ exp.duration }}
+        </span>
+        <span
+          [ngStyle]="{
+            'background-color': 'green',
+            filter: 'brightness(' + (100 + i * 10) + '%)'
+          }"
+          style="
+            width: 100%;
+            position: absolute;
+            height: 6px;
+            background: black;
+            bottom: 42px;
+          "
+        ></span>
+        <span
+          style="
+            position: absolute;
+            background-color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 42%;
+            bottom: 35px;
+            left: 42%;
+            border: 1px solid black;
+          "
+        >
+        </span>
+      </li>
+    </ul>
+    <div>
+      <ul
+        style="
+          display: flex;
+          list-style: none;
+          column-gap: 10px;
+          font-size: 13px;
+          color: black;
+          flex-wrap: wrap;
+        "
+      >
+        <li
+          style="
+            display: block;
+            background: #bde9bd;
+            padding: 3px 11px;
+            border-radius: 20px;
+            line-height: 12px;
+          "
+          *ngFor="let skill of user.skills; index as i"
+        >
+          <span style="display: block; width: max-content">
+            {{ skill.name }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div style="
+display: flex;
+column-gap: 20px;
+">
+<ng-template #tipContent>
+  <div >
+    <div style="text-align: center;"><img src="assets/images/badge-1.svg" style="width: 28px;">
+    &nbsp;<b>Contributor</b>: 
+  </div>
+    <span>Continue help people by his/her published jobs and posts more than 3 months.</span>
+  </div>
+</ng-template>
+
+<ng-template #tipContentRoleModel>
+  <div >
+    <div style="text-align: center;"><img src="assets/images/badge-4.svg" style="width: 28px;">
+    &nbsp;<b>Role Model</b>: 
+  </div>
+    <span>More than 50 people mark him/his as a role model.</span>
+  </div>
+</ng-template>
+
+<ng-template #tipContentMentor>
+  <div >
+    <div style="text-align: center;"><img src="assets/images/badge-3.svg" style="width: 28px;">
+    &nbsp;<b>Mentor</b>: 
+  </div>
+    <span>Connect with more than 10 people to support, advise and guide them to achieve their goals.</span>
+  </div>
+</ng-template>
+
+<ng-template #tipContentFacilitator>
+  <div >
+    <div style="text-align: center;"><img src="assets/images/badge-2.svg" style="width: 28px;">
+    &nbsp;<b>Facilitator</b>: 
+  </div>
+    <span>Create group-community, manage discussions and content for specific goals.</span>
+  </div>
+</ng-template>
+
+
+  <div *ngIf="batchList && batchList.length > 0" style="min-width: 275px;">
+    <ul style="list-style: none;display: flex;column-gap: 25px;margin: unset;padding: unset;width: 100%;">
+      <li *ngFor="let badge of batchList">
+        <img src="assets/images/badge-1.svg" style="width: 28px;" *ngIf="badge == 1" [ngbTooltip]="tipContent"/>
+        <img src="assets/images/badge-2.svg" style="width: 28px;" *ngIf="badge == 2" [ngbTooltip]="tipContentFacilitator"/>
+        <img src="assets/images/badge-3.svg" style="width: 28px;" *ngIf="badge == 3" [ngbTooltip]="tipContentMentor"/>
+        <img src="assets/images/badge-4.svg" style="width: 28px;" *ngIf="badge == 4" [ngbTooltip]="tipContentRoleModel"/>
+      </li>
+    </ul>
+  </div>
+  <div style="
+  display: flex;
+  column-gap: 44px;
+  line-height: 28px;
+  font-family: ui-monospace;
+  font-size: 17px;
+">
+  <span> {{user?.LeaderShipScore ? 'LeaderShip Score: '+ user?.LeaderShipScore : ''}}</span>
+  <span> {{ user?.following ? 'Followers: ' + user?.following?.length : ''}}</span>
+  <span>{{user?.articalcounts ? 'Articles: '+ user?.articalcounts : '' }} </span>
+  <span> {{ user?.articalcounts && user?.articalLikeCounts ? 'Like Counts: '+ user?.articalLikeCounts : '' }} </span>
+  <span>{{user?.jobcounts ? 'Posted Jobs: '+ user?.jobcounts : '' }} </span>
+  </div>
+</div>
+</div>
+

@@ -1,0 +1,70 @@
+<div>
+  <div>
+  <form style="width: 100%;margin-left: 10px">
+    <div class="searchContainer">
+      <div class="form-input">
+          <label>
+            <input required type="text" [formControl]="currentRole">
+            <span class="placeholder" >Current Role</span>
+          </label>
+        </div>
+        <div class="form-input">
+          <label>
+            <input required type="text" [formControl]="futureRole">
+            <span class="placeholder">Future Role</span>
+          </label>
+        </div>
+        <div style="position: relative; display: flex; column-gap: 10px;">
+        <div style="
+        position: relative;
+        width: 70px;
+    ">
+          <button (click)="searchTopUsers()" class="btn btn-success" style="position: absolute; bottom: 2px; padding: 2px 10px;">Search</button>
+        </div>
+        <div style="
+        position: relative;
+        width: 70px;
+    ">
+          <button (click)="clearTopUsers()" class="btn btn-outline-secondary" style="position: absolute; bottom: 2px; padding: 2px 10px;">Clear</button>
+        </div>
+      </div>
+  </div>
+  </form>
+  </div>
+  <div>
+    <div *ngIf="topUsers.length > 0">        
+      <div class="card" style="background-color: transparent;">
+          <h1 style="
+          font-size: 1.3em;
+          font-family: auto;
+          padding: 5px 20px;
+          font-weight: 600;
+          color: #2f4ba0
+      ">
+      <span *ngIf="lastSearch.currentRole || lastSearch.futurerole">
+          Linkup Network for 
+          <span style="">{{lastSearch.currentRole ? 'role:': ''}}</span>
+          <span style="font-style: italic;">{{lastSearch.currentRole ? ' '+lastSearch.currentRole : ''}}</span>
+          {{lastSearch.currentRole && lastSearch.futurerole? ' and ': ''}}
+          <span style="">{{lastSearch.futurerole ? 'future-role:': ''}}</span>
+          <span style="font-style: italic;">{{lastSearch.futurerole ? ' '+lastSearch.futurerole : ''}} </span>
+      </span>
+      <span *ngIf="!lastSearch.currentRole && !lastSearch.futurerole">Top Role Models of LinkUp Network</span>
+  </h1>
+          <div class="card-body list">
+              <app-user-row *ngFor="let user of topUsers" [user]='user' (friendRequest)="sendRequest($event)" (followRequest)="followRequest($event)"></app-user-row>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+<div *ngIf="friends" class="card">
+  <div class="card-header">
+    {{ friends.length }} connections
+  </div>
+  <div class="card-body connection-list">
+    <app-user-row *ngFor="let friend of friends" [user]="friend" ></app-user-row>
+  </div>
+</div>
+{{ errorMsg }}

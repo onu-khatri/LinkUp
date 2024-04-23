@@ -1,0 +1,52 @@
+.user-row {
+    padding: 10px 0;
+    border-top: 1px solid #f1f2f2;
+    border-bottom: 1px solid #f1f2f2;
+    margin-bottom: 5px;
+}
+
+img.profile-photo-lg{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.exp-list{
+    list-style: none;
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    row-gap: 18px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.exp-list:after{
+    content: '';
+}
+
+.follow {
+    color: #3399FF;
+    font-family: "Helvetica";
+    font-size: 10pt;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #3399FF;
+    border-radius: 3px;
+    width: 85px;
+    height: 30px;
+    cursor: hand;		    
+  }
+
+  .connect {
+    color: #038c31;
+    font-family: "Helvetica";
+    font-size: 10pt;
+    background-color: #ffffff;
+    border: 1px solid;
+    border-color: #025533;
+    border-radius: 3px;
+    width: 85px;
+    height: 30px;
+    cursor: hand;		    
+  }
